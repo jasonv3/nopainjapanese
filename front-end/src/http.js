@@ -6,7 +6,7 @@ import store from './store'
 
 // 基础配置
 if (process.env.NODE_ENV === 'production') {
-  axios.defaults.baseURL = 'https://59.110.164.149:5000';
+  axios.defaults.baseURL = 'http://59.110.164.149:5000';
 } else {
   axios.defaults.baseURL = 'http://127.0.0.1:5000';
 }
