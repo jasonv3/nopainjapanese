@@ -18,7 +18,7 @@ access_key_id = 'LTAI4G7N9GfwFVGP4QUBd7aM'
 # 请填写您的AccessKeySecret。
 access_key_secret = 'FdkMARx8nP60IWCDyfKa7cMP0AYcH8'
 # host的格式为 bucketname.endpoint ，请替换为您的真实信息。
-host = 'musejapanese.oss-cn-beijing.aliyuncs.com';
+host = 'https://musejapanese.oss-cn-beijing.aliyuncs.com';
 # callback_url为 上传回调服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
 callback_url = "www.nopainjapanese.com";
 # 用户上传文件时指定的前缀。
