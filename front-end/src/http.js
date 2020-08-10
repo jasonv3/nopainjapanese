@@ -6,7 +6,7 @@ import store from './store'
 
 // 基础配置
 if (process.env.NODE_ENV === 'production') {
-  axios.defaults.baseURL = 'http://www.nopainjapanese.com:5000';
+  axios.defaults.baseURL = 'http://www.nopainjapanese.com/backend/';
 } else {
   axios.defaults.baseURL = 'http://127.0.0.1:5000';
 }
