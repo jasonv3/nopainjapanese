@@ -14,7 +14,7 @@
           
             <form id="sendMessagesForm" @submit.prevent="onSubmitSendMessages" @reset.prevent="onResetSendMessages">
               <div class="form-group">
-                <textarea v-model="sendMessagesForm.body" class="form-control" id="sendMessagesFormBody" rows="5" placeholder=" 内容"></textarea>
+                <textarea v-model="sendMessagesForm.body" class="form-control" id="sendMessagesFormBody" rows="5" placeholder="日语内容"></textarea>
                 <small class="form-control-feedback" v-show="sendMessagesForm.bodyError">{{ sendMessagesForm.bodyError }}</small>
               </div>
               <button type="reset" class="btn btn-secondary">Cancel</button>
@@ -133,7 +133,7 @@
           <input type="text" v-model="postForm.summary" class="form-control" id="postFormSummary" placeholder="摘要">
         </div>
         <div class="form-group">
-          <textarea v-model="postForm.body" class="form-control" id="postFormBody" rows="5" placeholder=" 内容"></textarea>
+          <textarea v-model="postForm.body" class="form-control" id="postFormBody" rows="5" placeholder="日语内容"></textarea>
           <small class="form-control-feedback" v-show="postForm.bodyError">{{ postForm.bodyError }}</small>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

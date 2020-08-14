@@ -180,9 +180,12 @@ export default {
         console.error(error);
       }
     },
-    async uploadAudio(oss_token) {
+       async uploadAudio(oss_token) {
       let data = new FormData();
       const fileName = `${Date.now() + Math.random().toString(36).substring(7)}.ogg`;
+      data.append('OSSAccessKeyId', oss_token.accessid);
+      data.append('policy', oss_token.policy);
+      data.append('Signature', '/+JXN3nI4H5RF9a/ko6A0iYZdQc=')
       data.append('key', oss_token.dir + fileName);
       data.append('file', this.blob);
 
@@ -190,15 +193,10 @@ export default {
         // url: path,
         baseURL: oss_token.host, 
         method: 'POST',
-        header : {
-          'Content-Type': 'multipart/form-data',
-          'OSSAccessKeyId': oss_token.accessid,
-          'policy': oss_token.policy,
-          'Signature': oss_token.Signature
-        },
         data: data
       }
-      await axios(config)
+      const instance = axios.create(config)
+      await instance();
       return `${oss_token.host}/${oss_token.dir}${fileName}`
     },
     async uploadImage(oss_token) {
@@ -221,6 +219,9 @@ export default {
       })();
       const fileName = `${Date.now() + Math.random().toString(36).substring(7)}.${extension}`;
       let data = new FormData();
+      data.append('OSSAccessKeyId', oss_token.accessid);
+      data.append('policy', oss_token.policy);
+      data.append('Signature','/+JXN3nI4H5RF9a/ko6A0iYZdQc=')
       data.append('key', oss_token.dir + fileName);
       data.append('file', file);
 
@@ -228,15 +229,10 @@ export default {
         // url: path,
         baseURL: oss_token.host, 
         method: 'POST',
-        header : {
-          'Content-Type': 'multipart/form-data',
-          'OSSAccessKeyId': oss_token.accessid,
-          'policy': oss_token.policy,
-          'Signature': oss_token.Signature
-        },
         data: data
       }
-      await axios(config)
+      const instance = axios.create(config)
+      await instance();
       return `${oss_token.host}/${oss_token.dir}${fileName}`
     },
     async addPost(imgossdir, oggossdir) {

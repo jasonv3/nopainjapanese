@@ -14,8 +14,6 @@ from app.utils.decorator import permission_required
 
 @bp.route('/users/', methods=['POST'])
 def create_user():
-    print('11111111111')
-    print('注册一个新用户')
     '''注册一个新用户'''
     data = request.get_json()
     if not data:

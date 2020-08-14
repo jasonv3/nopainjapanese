@@ -14,21 +14,20 @@ import hmac
 from hashlib import sha1 as sha
 
 
-#access_key_id = 'LTAI4GAJGZhuxsqVawMEUR3X'
-# 请填写您的AccessKeySecret。
-#access_key_secret = '586hqgU3YYCUg4Qup9EJSfWfJfqIrS'
+#access_key_id = 'LTAI4G5ZZD14dyd76CYC2KRW'# 请填写您的AccessKeySecret。
+#access_key_secret = 'gXUNKLlE4aSBXiJbF8HF6mGcgBK714'
 # host的格式为 bucketname.endpoint ，请替换为您的真实信息。
 #host = 'https://crazykay-tmp.oss-cn-shanghai.aliyuncs.com';
 # callback_url为 上传回调服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
 #callback_url = "https://dev.shunmiao.tech/backend/api/";
 
-access_key_id = 'LTAI4G7N9GfwFVGP4QUBd7aM'
+access_key_id = 'LTAI4G2ASuzRtnxP6CwVKFiX'
 # 请填写您的AccessKeySecret。
-access_key_secret = 'FdkMARx8nP60IWCDyfKa7cMP0AYcH8'
+access_key_secret = 'B2tGJ5sks3Zu6gr8OE9GsXbZKPfEN9'
 # host的格式为 bucketname.endpoint ，请替换为您的真实信息。
 host = 'https://musejapanese.oss-cn-beijing.aliyuncs.com';
 # callback_url为 上传回调服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
-callback_url = "https://www.nopainjapanese/backend/api/";
+callback_url = "https://www.nopainjapanese.com/backend/api/";
 # 用户上传文件时指定的前缀。
 # upload_dir = 'images/'
 expire_time = 30

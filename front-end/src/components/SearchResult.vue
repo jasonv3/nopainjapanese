@@ -22,7 +22,7 @@
                 <input type="text" v-model="editPostForm.summary" class="form-control" id="editPostFormSummary" placeholder="摘要">
               </div>
               <div class="form-group">
-                <textarea v-model="editPostForm.body" class="form-control" id="editPostFormBody" rows="5" placeholder=" 内容"></textarea>
+                <textarea v-model="editPostForm.body" class="form-control" id="editPostFormBody" rows="5" placeholder="日语内容"></textarea>
                 <small class="form-control-feedback" v-show="editPostForm.bodyError">{{ editPostForm.bodyError }}</small>
               </div>
               <button type="reset" class="btn btn-secondary">Cancel</button>

@@ -30,10 +30,11 @@ def create_post():
     post = Post()
     post.from_dict(data)
     post.author = g.current_user  # 通过 auth.py 中 verify_token() 传递过来的（同一个request中，需要先进行 Token 认证）
-    taglist = post.tags.split('_')
-    for item in taglist:
-        querytag = Tag.query.filter_by(id=int(item)).first()
-        post.taged_by(querytag)
+    if len(post.tags) > 0 : 
+        taglist = post.tags.split('_')
+        for item in taglist:
+          querytag = Tag.query.filter_by(id=int(item)).first()
+          post.taged_by(querytag)
 
        #添加单词 
     wakati = MeCab.Tagger("-Owakati")
@@ -136,13 +137,14 @@ def update_post(id):
        originwordlist = post.words[:-1].split('_')
 
     post.from_dict(data)
-    taglist = post.tags.split('_')
     for item in origintaglist:
         querytag = Tag.query.filter_by(id=int(item)).first()
         post.untaged_by(querytag)
-    for item in taglist:
-        querytag = Tag.query.filter_by(id=int(item)).first()
-        post.taged_by(querytag)
+    if len(post.tags) > 0 :     
+       taglist = post.tags.split('_')
+       for item in taglist:
+          querytag = Tag.query.filter_by(id=int(item)).first()
+          post.taged_by(querytag)
 
     for item in originwordlist:
         queryword = Word.query.filter_by(id=int(item)).first()
