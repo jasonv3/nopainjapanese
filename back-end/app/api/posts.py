@@ -136,6 +136,9 @@ def update_post(id):
     originwordlist = []
     if post.words is not None:
        originwordlist = post.words[:-1].split('_')
+       for item in originwordlist:
+          queryword = Word.query.filter_by(id=int(item)).first()
+          post.unworded_by(queryword)
 
     if  len(post.tags) > 0 : 
         origintaglist = post.tags.split('_')
@@ -149,9 +152,7 @@ def update_post(id):
           querytag = Tag.query.filter_by(id=int(item)).first()
           post.taged_by(querytag)
 
-    for item in originwordlist:
-        queryword = Word.query.filter_by(id=int(item)).first()
-        post.unworded_by(queryword)
+   
 
        #添加单词 
     wakati = MeCab.Tagger("-Owakati")
