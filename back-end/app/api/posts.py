@@ -137,8 +137,9 @@ def update_post(id):
     if post.words is not None:
        originwordlist = post.words[:-1].split('_')
        for item in originwordlist:
-          queryword = Word.query.filter_by(id=int(item)).first()
-          post.unworded_by(queryword)
+           print(item)
+           queryword = Word.query.filter_by(id=int(item)).first()
+           post.unworded_by(queryword)
 
     if  len(post.tags) > 0 : 
         origintaglist = post.tags.split('_')
