@@ -131,15 +131,18 @@ def update_post(id):
         message['body'] = 'Body is required.'
     if message:
         return bad_request(message)
-    origintaglist = post.tags.split('_')
+    
+    
     originwordlist = []
     if post.words is not None:
        originwordlist = post.words[:-1].split('_')
 
+    if  len(post.tags) > 0 : 
+        origintaglist = post.tags.split('_')
+        for item in origintaglist:
+            querytag = Tag.query.filter_by(id=int(item)).first()
+            post.untaged_by(querytag)
     post.from_dict(data)
-    for item in origintaglist:
-        querytag = Tag.query.filter_by(id=int(item)).first()
-        post.untaged_by(querytag)
     if len(post.tags) > 0 :     
        taglist = post.tags.split('_')
        for item in taglist:
