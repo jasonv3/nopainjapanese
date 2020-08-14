@@ -6,7 +6,7 @@
         <small class="form-control-feedback" v-show="postForm.titleError">{{ postForm.titleError }}</small>
       </div>
       <div class="form-group">
-        <textarea v-model="postForm.body" class="form-control" id="postFormBody" rows="5" placeholder=" 内容" maxlength="144"></textarea>
+        <textarea v-model="postForm.body" class="form-control" id="postFormBody" rows="5" placeholder="日语内容" maxlength="144"></textarea>
         <small>{{postForm.bodyLength}}/144</small>
         <small class="form-control-feedback" v-show="postForm.bodyError">{{ postForm.bodyError }}</small>
       </div>
@@ -63,6 +63,8 @@ export default {
       sharedState: store.state,
       audioChanged: false,
       imageChanged: false,
+      audiooriginal: false,
+      imageoriginal:false,
       post: {},
       tag: '',
       tags: [],
@@ -142,6 +144,17 @@ export default {
         this.postForm.chinesebody = this.post.chinesebody;
         this.previewImage = this.post.imgossdir;
         this.audioUrl = this.post.oggossdir;
+        if(this.previewImage)
+        {
+          
+          this.imageoriginal = true;
+        }
+        if(this.audioUrl)
+        {
+          this.audiooriginal = true;
+        }
+
+        console.log()
         this.post.tags.map(tag => {
           this.tags.push({
             id: tag.id,
@@ -241,7 +254,7 @@ export default {
       const fileName = `${Date.now() + Math.random().toString(36).substring(7)}.ogg`;
       data.append('OSSAccessKeyId', oss_token.accessid);
       data.append('policy', oss_token.policy);
-      data.append('Signature', '/+JXN3nI4H5RF9a/ko6A0iYZdQc=')
+      data.append('Signature',oss_token.signature)
       data.append('key', oss_token.dir + fileName);
       data.append('file', this.blob);
 
@@ -277,7 +290,7 @@ export default {
       let data = new FormData();
       data.append('OSSAccessKeyId', oss_token.accessid);
       data.append('policy', oss_token.policy);
-      data.append('Signature', '/+JXN3nI4H5RF9a/ko6A0iYZdQc=')
+      data.append('Signature',oss_token.signature)
       data.append('key', oss_token.dir + fileName);
       data.append('file', file);
 
@@ -363,14 +376,26 @@ export default {
       let imgossdir = null, oggossdir = null;
       if (this.previewImage !== null && this.imageChanged) {
         const oss_image_token = await this.getOssToken('image');
+        imgossdir = await this.uploadImage(oss_image_token);}
+      else if(!this.imageoriginal && this.imageChanged)
+      {
+        const oss_image_token = await this.getOssToken('image');
         imgossdir = await this.uploadImage(oss_image_token);
-      } else if (this.previewImage !== null && !this.imageChanged) {
+      }
+
+      else if (this.previewImage !== null && !this.imageChanged) {
         imgossdir = this.previewImage;
       }
       if (this.audioUrl !== null && this.audioChanged) {
         const oss_audio_token = await this.getOssToken('audio');
         oggossdir = await this.uploadAudio(oss_audio_token);
-      } else if (this.audioUrl !== null && !this.audioChanged) {
+      } 
+      else if (!this.audiooriginal && this.audioChanged)
+      {
+        const oss_audio_token = await this.getOssToken('audio');
+        oggossdir = await this.uploadAudio(oss_audio_token);
+      }
+      else if (this.audioUrl !== null && !this.audioChanged) {
         oggossdir = this.audioUrl;
       }
       const tags = await this.addTags();
