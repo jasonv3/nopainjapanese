@@ -6,7 +6,7 @@
         <form @submit.prevent="onSubmit">
           <div class="form-group"  v-bind:class="{'u-has-error-v1': registerForm.usernameError}" >
             <label for="username">Username</label>
-            <input type="text" v-model="registerForm.username" class="form-control" id="username" placeholder="">
+            <input type="text" v-model="registerForm.username" class="form-control" id="username" placeholder="不能包含中文以及特殊标点">
             <small class="form-control-feedback" v-show="registerForm.usernameError">{{ registerForm.usernameError }}</small>
           </div>
           <div class="form-group" v-bind:class="{'u-has-error-v1': registerForm.emailError}" >
